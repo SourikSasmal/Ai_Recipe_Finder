@@ -45,7 +45,7 @@ async function run(prompt) {
 
   const result = await chatSession.sendMessage(`hay you are a good chef,the person wants easy recipe for ${prompt}`);
 
-  console.log(result.response.text());
+  
   return result.response.text();
 }
 
