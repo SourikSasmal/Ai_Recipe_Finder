@@ -99,7 +99,7 @@ input:checked + .slider:before {
 
 h1 {
     font-size: 32px;
-    color: #00e676;  
+    color: #FBBB04;  
     margin-bottom: 10px;
 }
 
@@ -122,14 +122,14 @@ input {
 }
 
 input:focus {
-    border-color: #00e676;
+    border-color: #FBBB04;
     outline: none;
 }
 
 button {
     width: 80%;
     padding: 15px;
-    background-color: #00e676; 
+    background-color: #FBBB04; 
     color: #333;
     border: none;
     border-radius: 25px;
@@ -139,7 +139,7 @@ button {
 }
 
 button:hover {
-    background-color: #00c853; 
+    background-color: #FBBB04; 
 }
 
 #recipe-results {
@@ -174,7 +174,7 @@ button:hover {
 }
 
 .recipe-card h3 {
-    color: #00e676;
+    color: #FBBB04;
     font-size: 20px;
     margin-bottom: 10px;
 }
@@ -185,7 +185,7 @@ button:hover {
 }
 
 .recipe-card a {
-    color: #00e676;
+    color: #FBBB04;
     text-decoration: none;
     font-weight: bold;
 }

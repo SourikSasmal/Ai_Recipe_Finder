@@ -99,7 +99,7 @@ document.getElementById('recipe-form').addEventListener('submit', async (event) 
         const formattedResponse = data.response
             .replace(/\*/g, '') // Remove stars
             .replace(/(.{60})/g, '$1\n') // Add line breaks at 60 characters
-            .replace(/(Easy One-Bowl Vanilla Cake|Ingredients:|Instructions:|Tips for Success:|Variations:)/g, '<span style="color: #00e676;">$1</span>'); // Color headings
+            .replace(/(Easy One-Bowl Vanilla Cake|Ingredients:|Instructions:|Tips for Success:|Variations:)/g, '<span style="color: #FBBB04;">$1</span>'); // Color headings
 
         responseDiv.innerHTML = `<pre>${formattedResponse}</pre>`; // Use <pre> to preserve formatting
         responseDiv.style.maxHeight = 'none'; // Adjust container size according to the response
