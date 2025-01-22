@@ -87,7 +87,7 @@ document.getElementById('recipe-form').addEventListener('submit', async (event) 
     responseDiv.innerHTML = 'Generating recipe...';
 
     try {
-        const response = await fetch('/ai', {
+        const response = await fetch('/ai', { // Use relative URL for Vercel deployment
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -96,7 +96,13 @@ document.getElementById('recipe-form').addEventListener('submit', async (event) 
         });
 
         const data = await response.json();
-        responseDiv.innerHTML = `<pre>${data.response}</pre>`;
+        const formattedResponse = data.response
+            .replace(/\*/g, '') // Remove stars
+            .replace(/(.{60})/g, '$1\n') // Add line breaks at 60 characters
+            .replace(/(Easy One-Bowl Vanilla Cake|Ingredients:|Instructions:|Tips for Success:|Variations:)/g, '<span style="color: #00e676;">$1</span>'); // Color headings
+
+        responseDiv.innerHTML = `<pre>${formattedResponse}</pre>`; // Use <pre> to preserve formatting
+        responseDiv.style.maxHeight = 'none'; // Adjust container size according to the response
     } catch (error) {
         responseDiv.innerHTML = 'Error generating recipe. Please try again.';
     }

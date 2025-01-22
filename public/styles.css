@@ -12,11 +12,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Change to min-height to allow scrolling */
     flex-direction: column;
     text-align: center;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Disable horizontal scrolling */
 }
-
 
 .video-background {
     position: fixed; 
@@ -25,8 +26,8 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1; 
+    object-fit: cover; /* Ensure the video covers the entire background */
 }
-
 
 .toggle-container {
     position: absolute;
@@ -87,15 +88,13 @@ input:checked + .slider:before {
     transform: translateX(20px);
 }
 
-
 .container {
-    max-width: 600px;
+    max-width: 700px;
     padding: 30px;
     background-color: #1e1e1ed7;  
     border-radius: 15px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     width: 100%;
-    
 }
 
 h1 {
@@ -146,6 +145,23 @@ button:hover {
 #recipe-results {
     margin-top: 30px;
     color: #e0e0e0;
+    line-height: 1.6; /* Improve line spacing */
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    overflow-wrap: break-word; /* Ensure long words break to fit the container */
+    max-height: 400px; /* Limit the height of the results container */
+    overflow-y: auto; /* Add vertical scroll if content exceeds max height */
+    padding: 15px; /* Add padding for better readability */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Make the font bigger */
+    max-width: 600px; /* Ensure the response is within 600px width */
+    margin-left: auto; /* Center the response container */
+    margin-right: auto; /* Center the response container */
+    word-break: break-word; /* Break long words to fit within the container */
+}
+
+#recipe-results pre {
+    font-size: 18px; /* Make the font bigger */
+    word-break: break-word; /* Break long words to fit within the container */
 }
 
 .recipe-card {
@@ -176,4 +192,24 @@ button:hover {
 
 .recipe-card a:hover {
     text-decoration: underline;
+}
+
+/* Media Queries for Mobile Optimization */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    input, button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    #recipe-results {
+        max-width: 100%;
+    }
 }
