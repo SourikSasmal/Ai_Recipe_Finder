@@ -122,7 +122,7 @@ footer {
   padding: 10px;
   background-color: #d2aa5c;
   border-top: 2px solid #826a39;
-  color: #757575;
+  color: #000000;
   
   
 }
@@ -133,7 +133,7 @@ footer p {
 }
 
 footer p a {
-  color: #e5c07b;
+  color: #003cff;
   text-decoration: none;
 }
 
