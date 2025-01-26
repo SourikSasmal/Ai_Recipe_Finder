@@ -1,0 +1,143 @@
+/* General Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: #000000;
+  height: 100%;
+  overflow: hidden;
+  zoom: 95%;
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Ensures content is above the video */
+  overflow: hidden;
+}
+
+#bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  background-size: cover;
+  object-fit: cover; /* Ensures the video fills the container */
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #FBBB04;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #333333;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #ffffff; /* Gold accent */
+}
+
+header p {
+  font-size: 1.2rem;
+  margin: 5px 0 0;
+  color: #ffffff;
+}
+
+/* Main Content */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 160px); /* Adjust height for header and footer */
+  border-radius: 12px;
+}
+
+.content {
+  text-align: center;
+  background-color: #000000cd;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 1500px;
+  width: 100%;
+  justify-content: center;
+  
+  
+}
+
+.content h2 {
+  font-size: 2rem;
+  color: #FBBB04;
+}
+
+.content p {
+  font-size: 1.1rem;
+  color: #ffffffaf;
+  margin-bottom: 20px;
+}
+
+.info {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Button */
+button {
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #FBBB04; /* Gold accent */
+  color: #000000; /* Dark text for contrast */
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #d2aa5c;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #d2aa5c;
+  border-top: 2px solid #826a39;
+  color: #757575;
+  
+  
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+footer p a {
+  color: #e5c07b;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+

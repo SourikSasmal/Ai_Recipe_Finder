@@ -4,11 +4,6 @@ const ingredientInput = document.getElementById("ingredient-input");
 const recipeResults = document.getElementById("recipe-results");
 const video = document.getElementById('background-video');
 
-// Hardcoded recipes
-const recipes = {
-
-};
-
 // Event listener for the search button
 searchButton.addEventListener('click', function() {
     const ingredients = ingredientInput.value.trim().toLowerCase();
@@ -21,35 +16,28 @@ searchButton.addEventListener('click', function() {
 
 // Function to find recipes based on user input
 function findRecipes(ingredients) {
-    // Split the ingredients by comma and search for matching recipes
-    const ingredientArray = ingredients.split(',').map(ingredient => ingredient.trim());
-    let foundRecipes = [];
+    recipeResults.innerHTML = 'Generating recipe...';
 
-    ingredientArray.forEach(ingredient => {
-        if (recipes[ingredient]) {
-            foundRecipes = foundRecipes.concat(recipes[ingredient]);
-        }
-    });
+    fetch('/ai', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: `recipe for ${ingredients}` })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const formattedResponse = data.response
+            .replace(/\*/g, '') // Remove stars
+            .replace(/(.{60})/g, '$1\n') // Add line breaks at 60 characters
+            .replace(/(Ingredients:|Instructions:|Tips for Success:|Variations:)/g, '<h2 style="color: #FBBB04;">$1</h2>') // Color headings and make them larger
+            .replace(/\n/g, '<br>'); // Replace newlines with <br> for HTML formatting
 
-    // Display results
-    if (foundRecipes.length > 0) {
-        displayRecipes(foundRecipes);
-    } else {
-        recipeResults.innerHTML = '<p>No recipes found for the given ingredients.</p>';
-    }
-}
-
-// Function to display recipes
-function displayRecipes(recipesList) {
-    recipeResults.innerHTML = '';  // Clear previous results
-    recipesList.forEach(recipe => {
-        const recipeCard = document.createElement('div');
-        recipeCard.classList.add('recipe-card');
-        recipeCard.innerHTML = `
-            <h3>${recipe.title}</h3>
-            <p>${recipe.description}</p>
-        `;
-        recipeResults.appendChild(recipeCard);
+        recipeResults.innerHTML = `<div style="padding: 20px; background-color: #1e1e1e; border-radius: 10px;">${formattedResponse}</div>`; // Use a div to style the response
+        recipeResults.style.maxHeight = 'none'; // Adjust container size according to the response
+    })
+    .catch(error => {
+        recipeResults.innerHTML = 'Error generating recipe. Please try again.';
     });
 }
 
@@ -72,14 +60,14 @@ document.getElementById('recipe-form').addEventListener('submit', async (event) 
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ prompt: ` ${ingredientInput}` })
+            body: JSON.stringify({ prompt: `recipe for ${ingredientInput}` })
         });
 
         const data = await response.json();
         const formattedResponse = data.response
             .replace(/\*/g, '') // Remove stars
             .replace(/(.{60})/g, '$1\n') // Add line breaks at 60 characters
-            .replace(/(Easy One-Bowl Vanilla Cake|Ingredients:|Instructions:|Tips for Success:|Variations:)/g, '<h2 style="color: #FBBB04;">$1</h2>') // Color headings and make them larger
+            .replace(/(Ingredients:|Instructions:|Tips for Success:|Variations:)/g, '<h2 style="color: #FBBB04;">$1</h2>') // Color headings and make them larger
             .replace(/\n/g, '<br>'); // Replace newlines with <br> for HTML formatting
 
         responseDiv.innerHTML = `<div style="padding: 20px; background-color: #1e1e1e; border-radius: 10px;">${formattedResponse}</div>`; // Use a div to style the response

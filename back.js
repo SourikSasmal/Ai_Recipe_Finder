@@ -13,7 +13,7 @@ const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
   model: "gemini-2.0-flash-exp",
-  systemInstruction: "you are a good chef and give easy recipe to cook",
+  systemInstruction: "you are a good chef who gives easy recipe to cook",
 });
 
 const generationConfig = {
